@@ -1,10 +1,14 @@
 package org.example;
 
 import org.example.controller.UserAuthenticationController;
+import org.example.domain.Book;
 import org.example.domain.User;
+import org.example.enums.BookGenre;
+import org.example.service.BookService;
 import org.example.service.UserService;
 
 import java.io.IOException;
+import java.time.LocalDate;
 import java.util.Scanner;
 
 
@@ -17,7 +21,15 @@ import java.util.Scanner;
 public class Main {
     public static void main(String[] args) throws IOException {
         Scanner scan = new Scanner(System.in);
-        int choice;
+
+
+
+        BookService bookService = new BookService();
+
+        bookService.loadByTitle("").forEach(System.out::println);
+
+
+
 
 
 

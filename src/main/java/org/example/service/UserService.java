@@ -22,10 +22,9 @@ public class UserService implements UserRepository {
             return false;
         }
     }
-
     //READY
     @Override
-    public boolean loadUsers() throws IOException {
+    public boolean loadAllUsers() throws IOException {
         File file = new File("user_database.txt");
         try (BufferedReader br = new BufferedReader(new FileReader(file))) {
             String details;
@@ -45,45 +44,41 @@ public class UserService implements UserRepository {
     //READY
     @Override
     public  User loadUserByUsername(String username) throws IOException {
-        File file = new File("user_database.txt");
-        try (BufferedReader br = new BufferedReader(new FileReader(file))) {
-            String details;
-            while ((details = br.readLine()) != null) {
-                String[] userDetails = details.split(",");
-                if (userDetails[0].isEmpty()) break;
-                if (userDetails[1].equals(username)) {
-                    User user = new User(Long.parseLong(userDetails[0]), userDetails[1], userDetails[2], userDetails[3], userDetails[4], userDetails[5], UserRole.valueOf(userDetails[6]));
-                    user.setHashedPassword(userDetails[2]);
-                    return user;
-                }
-            }
-            return null;
-        } catch (IOException io) {
-            return null;
-        }
-
+       return LoadUser("username", username);
     }
-
     @Override
     public User loadUserByUserId(Long id) {
+       return LoadUser("id", id);
+    }
+
+    private <T> User LoadUser(String load, T loadBy) {
         File file = new File("user_database.txt");
         try (BufferedReader br = new BufferedReader(new FileReader(file))) {
             String details;
             while ((details = br.readLine()) != null) {
                 String[] userDetails = details.split(",");
                 if (userDetails[0].isEmpty()) break;
-                if (userDetails[0].equals(String.valueOf(id))){
-                    User user = new User(Long.parseLong(userDetails[0]), userDetails[1], userDetails[2], userDetails[3], userDetails[4], userDetails[5], UserRole.valueOf(userDetails[6]));
-                    user.setHashedPassword(userDetails[2]);
-                    return user;
+                switch (load) {
+                    case "username" -> {
+                        if (userDetails[1].equals(String.valueOf(loadBy))) {
+                            User user = new User(Long.parseLong(userDetails[0]), userDetails[1], userDetails[2], userDetails[3], userDetails[4], userDetails[5], UserRole.valueOf(userDetails[6]));
+                            user.setHashedPassword(userDetails[2]);
+                            return user;
+                        }
+                    }
+                    case "id" -> {
+                        if (userDetails[0].equals(loadBy)) {
+                            User user = new User(Long.parseLong(userDetails[0]), userDetails[1], userDetails[2], userDetails[3], userDetails[4], userDetails[5], UserRole.valueOf(userDetails[6]));
+                            user.setHashedPassword(userDetails[2]);
+                            return user;
+                        }
+                    }
                 }
             }
-            return null;
-        } catch (IOException io) {
+        }catch (IOException io){
             return null;
         }
-
+        return null;
     }
-
 
 }

@@ -29,7 +29,7 @@ public class User {
     private static final String PHONE_REGEX = "^\\+994(50|51|55|70|77|10)(\\d{7})$";
 
     public User(Long id, String username, String password, String address, String phone, String email, UserRole role) {
-        verifyUserDetails(id, username, password, address, phone, email, role);
+        verifyUserDetails(username, password);
         this.id = id;
         this.username = username;
         this.hashedPassword = hashPassword(password);
@@ -121,7 +121,7 @@ public class User {
         return id + "," + username + "," + hashedPassword + "," + address + "," + phone + "," + email + "," + role;
     }
 
-    public static void verifyUserDetails(Long id, String username, String password, String address, String phone, String email, UserRole role) {
+    public static void verifyUserDetails(String username, String password) {
         if (username == null || username.trim().length() <= 1)
             throw new WrongUsernameException("Username must be provided and have at least 2 characters.");
         if (password == null || password.length() < MIN_PASSWORD_LENGTH)
