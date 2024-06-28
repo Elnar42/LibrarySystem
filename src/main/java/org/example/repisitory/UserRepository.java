@@ -11,4 +11,6 @@ public interface UserRepository {
      boolean loadUsers() throws IOException;
 
      User loadUserByUsername(String username) throws IOException;
+
+     User loadUserByUserId(Long id);
 }

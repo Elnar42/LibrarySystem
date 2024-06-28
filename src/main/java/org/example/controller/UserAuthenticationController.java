@@ -51,11 +51,11 @@ public class UserAuthenticationController {
 
     }
 
-    public static boolean SignUp(Scanner scan) throws IOException {
+    public static User SignUp(Scanner scan) throws IOException {
         if (!userService.loadUsers()) {
             System.out.println("Something went wrong! Try later!");
             users.clear();
-            return false;
+            return null;
         }
         Long id = generateID();
         Set<Long> keySet = users.keySet();
@@ -68,7 +68,7 @@ public class UserAuthenticationController {
         if (userService.loadUserByUsername(username) != null) {
             System.out.println("Username is taken!");
             users.clear();
-            return false;
+            return null;
         }
         System.out.println("Enter Password: ");
         String password = scan.next().trim();
@@ -76,13 +76,12 @@ public class UserAuthenticationController {
         if (!userService.takeUserRecord(user)) {
             System.out.println("Something unexpected happened! User was not registered!");
             users.clear();
-            return false;
+            return null;
         }
          users.clear();
         System.out.println("Signing up is successful! Keep in mind to add your email, phone number and address in later stage!");
-        return true;
+        return user;
     }
-
 
     public static Long generateID() {
         return new Random().nextLong(9000) + 1000;
