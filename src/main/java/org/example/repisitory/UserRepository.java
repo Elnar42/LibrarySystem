@@ -8,7 +8,7 @@ public interface UserRepository {
 
      boolean takeUserRecord(User user);
 
-     boolean loadUsers() throws IOException;
+     boolean loadAllUsers() throws IOException;
 
      User loadUserByUsername(String username) throws IOException;
 

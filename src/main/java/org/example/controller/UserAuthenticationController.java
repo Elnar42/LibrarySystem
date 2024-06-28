@@ -13,7 +13,6 @@ import java.util.Set;
 public class UserAuthenticationController {
     private static final HashMap<Long, User> users = new HashMap<>();
     private static final UserService userService = new UserService();
-
     public static User SignIn(Scanner scan) throws IOException {
 
         System.out.println("Enter Username: ");
@@ -52,7 +51,7 @@ public class UserAuthenticationController {
     }
 
     public static User SignUp(Scanner scan) throws IOException {
-        if (!userService.loadUsers()) {
+        if (!userService.loadAllUsers()) {
             System.out.println("Something went wrong! Try later!");
             users.clear();
             return null;
@@ -70,6 +69,7 @@ public class UserAuthenticationController {
             users.clear();
             return null;
         }
+
         System.out.println("Enter Password: ");
         String password = scan.next().trim();
         User user = new User(id, username, password, null, null, null, UserRole.MEMBER);

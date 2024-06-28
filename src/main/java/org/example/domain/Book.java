@@ -17,6 +17,15 @@ public class Book {
 
     private boolean isAvailable;
 
+    public Book(Long id, String title, String author, BookGenre genre, LocalDate publicationDate) {
+        this.id = id;
+        this.title = title;
+        this.author = author;
+        this.genre = genre;
+        this.publicationDate = publicationDate;
+        this.isAvailable = true;
+    }
+
     public Long getId() {
         return id;
     }
@@ -64,4 +73,10 @@ public class Book {
     public void setAvailable(boolean available) {
         isAvailable = available;
     }
+
+    @Override
+    public String toString() {
+        return id + "," + title + "," + author + "," + genre + "," + publicationDate + "," + isAvailable;
+    }
+
 }
