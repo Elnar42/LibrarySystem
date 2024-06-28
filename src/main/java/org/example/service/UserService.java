@@ -10,7 +10,6 @@ import java.io.*;
 public class UserService implements UserRepository {
 
     //READY
-
     @Override
     public boolean takeUserRecord(User user){
         String userTxt = user.toString();
@@ -65,8 +64,26 @@ public class UserService implements UserRepository {
 
     }
 
+    @Override
+    public User loadUserByUserId(Long id) {
+        File file = new File("user_database.txt");
+        try (BufferedReader br = new BufferedReader(new FileReader(file))) {
+            String details;
+            while ((details = br.readLine()) != null) {
+                String[] userDetails = details.split(",");
+                if (userDetails[0].isEmpty()) break;
+                if (userDetails[0].equals(String.valueOf(id))){
+                    User user = new User(Long.parseLong(userDetails[0]), userDetails[1], userDetails[2], userDetails[3], userDetails[4], userDetails[5], UserRole.valueOf(userDetails[6]));
+                    user.setHashedPassword(userDetails[2]);
+                    return user;
+                }
+            }
+            return null;
+        } catch (IOException io) {
+            return null;
+        }
 
-
+    }
 
 
 }
