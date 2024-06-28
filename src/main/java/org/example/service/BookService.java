@@ -1,19 +1,15 @@
 package org.example.service;
-
 import org.example.domain.Book;
 import org.example.enums.BookGenre;
 import org.example.repisitory.BookRepository;
-
 import java.io.*;
 import java.time.LocalDate;
 import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Set;
-
 public class BookService implements BookRepository {
     public static HashMap<Long, Book>  books = new HashMap<>();
-
 
     @Override
     public boolean saveAllBooks(Book... args) throws IOException {
@@ -22,7 +18,6 @@ public class BookService implements BookRepository {
         }
         return true;
     }
-
     @Override
     public Book saveBook(Book book) throws IOException {
         loadAllBooks();
@@ -37,7 +32,6 @@ public class BookService implements BookRepository {
         }catch(IOException io){
             return null;
         }
-
     }
 
     @Override
@@ -72,7 +66,7 @@ public class BookService implements BookRepository {
     public List<Book> loadByGenre(BookGenre genre) {
         return loadBook("genre", genre);
     }
-    private <T> List<Book> loadBook(String load, T loadBy){
+    private <T> List<Book> loadBook(String loader, T loadBy){
         List<Book> books = new LinkedList<>();
         File file = new File("book_database.txt");
         try(BufferedReader br = new BufferedReader(new FileReader(file))){
@@ -80,7 +74,7 @@ public class BookService implements BookRepository {
             while((details = br.readLine()) != null){
                 String [] detail = details.split(",");
                 if(detail[0].isEmpty()) return null;
-                switch (load) {
+                switch (loader) {
                     case "author" -> {
                         if (detail[2].equals(loadBy)) {
                             Book book = new Book(Long.parseLong(detail[0]), detail[1], detail[2], BookGenre.valueOf(detail[3]), LocalDate.parse(detail[4]));
@@ -106,11 +100,5 @@ public class BookService implements BookRepository {
         }catch(IOException io){
             return null;
         }
-
-
     }
-
-
-
-
 }
