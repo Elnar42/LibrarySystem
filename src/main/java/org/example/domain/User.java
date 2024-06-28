@@ -1,18 +1,19 @@
 package org.example.domain;
 
 import org.example.enums.UserRole;
+import org.example.exceptions.WrongEmailException;
 import org.example.exceptions.WrongPasswordException;
 import org.example.exceptions.WrongPhoneNumberException;
 import org.example.exceptions.WrongUsernameException;
+import org.mindrot.jbcrypt.BCrypt;
 
 import java.util.Objects;
 
 public class User {
-
-    private final Long id;
+    private Long id;
     private String username;
 
-    private String password;
+    private String hashedPassword;
 
     private String address;
 
@@ -22,26 +23,33 @@ public class User {
 
     private UserRole role;
 
-    private static final int MIN_PASSWORD_LENGTH = 10;
+
+    private static final int MIN_PASSWORD_LENGTH = 7;
     private static final String EMAIL_REGEX = "^[a-zA-Z0-9_+&*-]+(?:\\.[a-zA-Z0-9_+&*-]+)*@(?:[a-zA-Z0-9-]+\\.)+[a-zA-Z]{2,}$";
     private static final String PHONE_REGEX = "^\\+994(50|51|55|70|77|10)(\\d{7})$";
 
     public User(Long id, String username, String password, String address, String phone, String email, UserRole role) {
-        if (username == null || username.trim().length() <= 1)  throw new WrongUsernameException("Username must be provided and have at least 2 characters.");
-        if (password == null || password.length() < MIN_PASSWORD_LENGTH) throw new WrongPasswordException("Password must be at least " + MIN_PASSWORD_LENGTH + " characters long.");
-        if (email == null || !email.matches(EMAIL_REGEX)) throw new IllegalArgumentException("Invalid email address format.");
-        if (phone == null || !phone.matches(PHONE_REGEX)) throw new WrongPhoneNumberException("Invalid phone number format.");
-        if (address == null || address.trim().isEmpty()) throw new IllegalArgumentException("Address must be provided.");
-        if (role == null) throw new IllegalArgumentException("User role must be provided.");
-        if (id == null || id <= 0) throw new IllegalArgumentException("Invalid user ID.");
-
+        verifyUserDetails(id, username, password, address, phone, email, role);
         this.id = id;
         this.username = username;
-        this.password = password;
+        this.hashedPassword = hashPassword(password);
         this.address = address;
         this.phone = phone;
         this.email = email;
         this.role = role;
+    }
+
+
+    private String hashPassword(String plainPassword) {
+        return BCrypt.hashpw(plainPassword, BCrypt.gensalt());
+    }
+
+    public boolean verifyPassword(String password) {
+        return BCrypt.checkpw(password, this.hashedPassword);
+    }
+
+    public void setId(Long id) {
+        this.id = id;
     }
 
     public Long getId() {
@@ -56,12 +64,13 @@ public class User {
         this.username = username;
     }
 
-    public String getPassword() {
-        return password;
+    public void setHashedPassword(String hashedPassword) {
+        this.hashedPassword = hashedPassword;
     }
 
-    public void setPassword(String password) {
-        this.password = password;
+
+    public String getPassword() {
+        return hashedPassword;
     }
 
     public String getAddress() {
@@ -77,6 +86,8 @@ public class User {
     }
 
     public void setPhone(String phone) {
+        if (!phone.matches(PHONE_REGEX))
+            throw new WrongPhoneNumberException("Phone number format is not correct! (it should be +994 (50/70/77/51/55/10) + 7 digit long)");
         this.phone = phone;
     }
 
@@ -85,6 +96,7 @@ public class User {
     }
 
     public void setEmail(String email) {
+        if (email.matches(EMAIL_REGEX)) throw new WrongEmailException("Email format is not correct!");
         this.email = email;
     }
 
@@ -101,13 +113,18 @@ public class User {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         User user = (User) o;
-        return Objects.equals(id, user.id) && Objects.equals(username, user.username) && Objects.equals(password, user.password) && Objects.equals(address, user.address) && Objects.equals(phone, user.phone) && Objects.equals(email, user.email) && role == user.role;
+        return Objects.equals(id, user.id);
     }
 
     @Override
-    public int hashCode() {
-        return Objects.hash(id, username, password, address, phone, email, role);
+    public String toString() {
+        return id + "," + username + "," + hashedPassword + "," + address + "," + phone + "," + email + "," + role;
     }
 
-
+    public static void verifyUserDetails(Long id, String username, String password, String address, String phone, String email, UserRole role) {
+        if (username == null || username.trim().length() <= 1)
+            throw new WrongUsernameException("Username must be provided and have at least 2 characters.");
+        if (password == null || password.length() < MIN_PASSWORD_LENGTH)
+            throw new WrongPasswordException("Password must be at least " + MIN_PASSWORD_LENGTH + " characters long.");
+    }
 }
