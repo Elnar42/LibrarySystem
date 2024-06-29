@@ -1,8 +1,10 @@
 package org.example.repisitory;
 
 import org.example.domain.User;
+import org.example.enums.UserRole;
 
 import java.io.IOException;
+import java.util.List;
 
 public interface UserRepository {
 
@@ -12,7 +14,9 @@ public interface UserRepository {
 
      boolean loadAllUsers() throws IOException;
 
-     User loadUserByUsername(String username) throws IOException;
+     List<User> loadUserByUsername(String username) throws IOException;
 
-     User loadUserByUserId(Long id);
+     List<User> loadUserByUserId(Long id);
+     List<User> loadUserByUserAddress(String address);
+     List<User> loadUserByUserRole(UserRole role);
 }

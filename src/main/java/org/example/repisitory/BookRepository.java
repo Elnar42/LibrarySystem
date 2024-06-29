@@ -19,6 +19,8 @@ public interface BookRepository {
 
     List<Book> loadById(Long id);
 
+     List<Book> loadByAvailability();
+
     List<Book> loadByTitle(String title);
 
     List<Book> loadByAuthor(String author);

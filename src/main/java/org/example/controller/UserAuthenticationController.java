@@ -17,7 +17,7 @@ public class UserAuthenticationController {
     public static User SignIn(Scanner scan) throws IOException {
         System.out.println("Enter Username: ");
         String username = scan.next().trim();
-        User user = userService.loadUserByUsername(username);
+        User user = userService.loadUserByUsername(username).getFirst();
         if (user == null) {
             System.out.println("User does not exist");
             return null;
@@ -45,7 +45,6 @@ public class UserAuthenticationController {
 
             return user;
         }
-
     }
 
     public static User SignUp(Scanner scan) throws IOException {

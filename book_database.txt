@@ -1,8 +1,8 @@
-1,To Kill a Mockingbird,Harper Lee,FICTION,1960-07-11,false
-2,Pride and Prejudice,Jane Austen,FICTION,1813-01-28,false
-4,Brave New World,Aldous Huxley,FICTION,1932-01-01,false
+1,To Kill a Mockingbird,Harper Lee,FICTION,1960-07-11,true
+2,Pride and Prejudice,Jane Austen,FICTION,1813-01-28,true
+4,Brave New World,Aldous Huxley,FICTION,1932-01-01,true
 5,The Great Gatsby,F. Scott Fitzgerald,FICTION,1925-04-10,true
-6,The Catcher in the Rye,J.D. Salinger,FICTION,1951-07-16,false
+6,The Catcher in the Rye,J.D. Salinger,FICTION,1951-07-16,true
 7,Animal Farm,George Orwell,FICTION,1945-08-17,true
 8,Lord of the Flies,William Golding,FICTION,1954-09-17,true
 9,The Hobbit,J.R.R. Tolkien,FANTASY,1937-09-21,true
@@ -10,18 +10,15 @@
 11,Dune,Frank Herbert,SCIENCE,1965-08-01,true
 12,The Martian,Andy Weir,SCIENCE,2011-09-27,true
 13,A Brief History of Time,Stephen Hawking,SCIENCE,1988-04-01,true
-14,Sapiens: A Brief History of Humankind,Yuval Noah Harari,NONFICTION,2011-01-01,true
-15,The Power of Habit: Why We Do What We Do in Life and Business,Charles Duhigg,NONFICTION,2012-02-28,true
+14,Sapiens: A Brief History of Humankind,Yuval Noah Harri,NONFICTION,2011-01-01,true
 16,Becoming,Michelle Obama,NONFICTION,2018-11-13,true
-17,Leonardo da Vinci,Walter Isaacson,ART,2017-10-17,true
-18,The Goldfinch,Donna Tartt,FICTION,2013-10-22,true
-19,The Help,Kathryn Stockett,FICTION,2009-02-10,true
-20,The Road,Cormac McCarthy,FICTION,2006-09-26,true
+17,Leonardo da Vinci,Walter Isaacs,ART,2017-10-17,true
+18,The Goldfinch,Donna Tart,FICTION,2013-10-22,true
+19,The Help,Kathryn Socket,FICTION,2009-02-10,true
+20,The Road,Cormac McCathy,FICTION,2006-09-26,true
 21,The Lord of the Rings,J.R.R. Tolkien,FANTASY,1954-07-29,true
 24,Do Androids Dream of Electric Sheep?,Philip K. Dick,SCIENCE,1968-04-01,true
-26,Into the Wild,Jon Krakauer,NONFICTION,1996-01-01,true
-27,Sapiens: A Graphic History,Yuval Noah Harari & David Vandermeulen,NONFICTION,2020-11-01,true
+26,Into the Wild,Jon Krakatoa,NONFICTION,1996-01-01,true
 28,Girl with a Pearl Earring,Tracy Chevalier,ART,1999-01-01,true
 29,The Picture of Dorian Gray,Oscar Wilde,FICTION,1890-07-20,true
-31,A Song of Ice and Fire: A Game of Thrones,George R.R. Martin,FANTASY,1996-08-01,true
-33,Foundation,Isaac Asimov,SCIENCE,1951-05-01,false
+33,Foundation,Isaac Asimov,SCIENCE,1951-05-01,true

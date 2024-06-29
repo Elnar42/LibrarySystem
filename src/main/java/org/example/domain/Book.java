@@ -1,15 +1,10 @@
 package org.example.domain;
 
 import org.example.enums.BookGenre;
-import org.example.repisitory.GeneralRepository;
-import org.example.service.BookService;
-import org.example.service.UserService;
 
 import java.time.LocalDate;
 
-import static org.example.service.BookService.books;
-
-public class Book {
+public class Book implements Displayable {
 
     private Long id;
     private String title;
@@ -83,5 +78,12 @@ public class Book {
     public String toString() {
         return id + "," + title + "," + author + "," + genre + "," + publicationDate + "," + isAvailable;
     }
+
+    @Override
+    public String toFormattedString() {
+        return String.format("ID: %-3s | Title: %-40s | Author: %-25s | Genre: %-12s | Publication Date: %-12s | Available to borrow: %s",
+                id, title, author, genre, publicationDate, isAvailable);
+    }
+
 
 }
