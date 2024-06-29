@@ -8,11 +8,10 @@ import java.io.*;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
-import java.util.Random;
 
 public class UserService implements UserRepository {
 
-    private static final HashMap<Long, User> users = new HashMap<>();
+    public static final HashMap<Long, User> users = new HashMap<>();
 
 
     //READY
@@ -41,8 +40,10 @@ public class UserService implements UserRepository {
     @Override
     public boolean saveUser(User user) {
         loadAllUsers();
-        if(users.containsKey(user.getId())) throw new IllegalArgumentException("User with id (" + user.getId() + ") has already in library!");
-        if(users.values().stream().anyMatch(x -> x.getUsername().equals(user.getUsername()))) throw new IllegalArgumentException("Username (" + user.getUsername() + ") has been taken!");
+        if (users.containsKey(user.getId()))
+            throw new IllegalArgumentException("User with id (" + user.getId() + ") has already in library!");
+        if (users.values().stream().anyMatch(x -> x.getUsername().equals(user.getUsername())))
+            throw new IllegalArgumentException("Username (" + user.getUsername() + ") has been taken!");
         users.clear();
         String userTxt = user.toString();
         File file = new File("user_database.txt");
@@ -76,22 +77,33 @@ public class UserService implements UserRepository {
 
     //READY
     @Override
-    public User loadUserByUsername(String username) {
+    public List<User> loadUserByUsername(String username) {
         return LoadUser("username", username);
     }
 
     //READY
     @Override
-    public User loadUserByUserId(Long id) {
+    public List<User> loadUserByUserId(Long id) {
         return LoadUser("id", id);
+    }
+
+    @Override
+    public List<User> loadUserByUserAddress(String address) {
+        return LoadUser("address", address);
+    }
+
+    @Override
+    public List<User> loadUserByUserRole(UserRole role) {
+        return LoadUser("role", role);
     }
 
 
     //READY
-    private <T> User LoadUser(String load, T loadBy) {
+    private <T> List<User> LoadUser(String load, T loadBy) {
         File file = new File("user_database.txt");
         try (BufferedReader br = new BufferedReader(new FileReader(file))) {
             String details;
+            List<User> userList = new ArrayList<>();
             while ((details = br.readLine()) != null) {
                 String[] userDetails = details.split(",");
                 switch (load) {
@@ -99,7 +111,7 @@ public class UserService implements UserRepository {
                         if (userDetails[1].equals(String.valueOf(loadBy))) {
                             User user = new User(Long.parseLong(userDetails[0]), userDetails[1], userDetails[2], userDetails[3], userDetails[4], userDetails[5], UserRole.valueOf(userDetails[6]));
                             user.setHashedPassword(userDetails[2]);
-                            return user;
+                            userList.add(user);
                         }
                     }
                     case "id" -> {
@@ -107,15 +119,32 @@ public class UserService implements UserRepository {
                         if (id.equals(loadBy)) {
                             User user = new User(Long.parseLong(userDetails[0]), userDetails[1], userDetails[2], userDetails[3], userDetails[4], userDetails[5], UserRole.valueOf(userDetails[6]));
                             user.setHashedPassword(userDetails[2]);
-                            return user;
+                            userList.add(user);
+                        }
+                    }
+                    case "address" -> {
+                        String address = userDetails[3];
+                        if (address.contains(loadBy.toString())) {
+                            User user = new User(Long.parseLong(userDetails[0]), userDetails[1], userDetails[2], userDetails[3], userDetails[4], userDetails[5], UserRole.valueOf(userDetails[6]));
+                            user.setHashedPassword(userDetails[2]);
+                            userList.add(user);
+                        }
+                    }
+
+                    case "role" -> {
+                        UserRole role = UserRole.valueOf(userDetails[6]);
+                        if (role.equals(loadBy)) {
+                            User user = new User(Long.parseLong(userDetails[0]), userDetails[1], userDetails[2], userDetails[3], userDetails[4], userDetails[5], UserRole.valueOf(userDetails[6]));
+                            user.setHashedPassword(userDetails[2]);
+                            userList.add(user);
                         }
                     }
                 }
             }
+            return userList;
         } catch (IOException io) {
             return null;
         }
-        return null;
     }
 
     //READY

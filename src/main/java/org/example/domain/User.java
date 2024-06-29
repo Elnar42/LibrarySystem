@@ -9,7 +9,7 @@ import org.mindrot.jbcrypt.BCrypt;
 
 import java.util.Objects;
 
-public class User {
+public class User implements Displayable {
     private Long id;
     private String username;
 
@@ -120,6 +120,13 @@ public class User {
     public String toString() {
         return id + "," + username + "," + hashedPassword + "," + address + "," + phone + "," + email + "," + role;
     }
+
+    @Override
+    public String toFormattedString() {
+        return String.format("ID: %-3s | Username: %-25s | Address: %-30s | Phone: %-15s | Email: %-30s | Role: %-20s",
+                id, username, address, phone, email, role);
+    }
+
 
     public static void verifyUserDetails(String username, String password) {
         if (username == null || username.trim().length() <= 1 || username.contains(","))

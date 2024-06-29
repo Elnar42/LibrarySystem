@@ -1,14 +1,11 @@
 package org.example;
 
 
-import org.example.controller.UserAuthenticationController;
-import org.example.domain.Book;
-import org.example.enums.BookGenre;
 import org.example.service.BookService;
+import org.example.service.SearchAndSortService;
 import org.example.service.UserService;
 
 import java.io.IOException;
-import java.time.LocalDate;
 import java.util.Scanner;
 
 
@@ -21,9 +18,6 @@ import java.util.Scanner;
 public class Main {
     public static void main(String[] args) throws IOException {
         Scanner scan = new Scanner(System.in);
-
-
-        UserService userService = new UserService();
 
 //        userService.saveUser(new User(7248L, "Librarian", "admin123", "Baku Azerbaijan", "+994503421212", "elibrarian@gmail.com", UserRole.LIBRARIAN));
 //        userService.saveUser(new User(7249L, "elsad_12", "admin123", "Baku Azerbaijan", "+994104531212", "elsad12@gmail.com", UserRole.MEMBER));
@@ -40,11 +34,8 @@ public class Main {
 
 
 
-        BookService bookService = new BookService();
 
 
-
-        System.out.println(bookService.getBookAvailability(11L));
 
 
 

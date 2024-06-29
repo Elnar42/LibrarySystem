@@ -114,6 +114,10 @@ public class BookService implements BookRepository {
         return loadBook("genre", genre);
     }
 
+    @Override
+    public List<Book> loadByAvailability() {
+        return loadBook("availability", true);
+    }
     private <T> List<Book> loadBook(String loader, T loadBy) {
         List<Book> books = new LinkedList<>();
         File file = new File("book_database.txt");
@@ -121,7 +125,6 @@ public class BookService implements BookRepository {
             String details;
             while ((details = br.readLine()) != null) {
                 String[] detail = details.split(",");
-                if (detail[0].isEmpty()) return null;
                 switch (loader) {
                     case "author" -> {
                         if (detail[2].equals(loadBy)) {
@@ -136,13 +139,20 @@ public class BookService implements BookRepository {
                         }
                     }
                     case "title" -> {
-                        if (detail[1].equals(loadBy)) {
+                        if (detail[1].toLowerCase().contains(loadBy.toString().toLowerCase())) {
                             Book book = new Book(Long.parseLong(detail[0]), detail[1], detail[2], BookGenre.valueOf(detail[3]), LocalDate.parse(detail[4]), Boolean.parseBoolean(detail[5]));
                             books.add(book);
                         }
                     }
                     case "id" -> {
                         if (detail[0].equals(String.valueOf(loadBy))) {
+                            Book book = new Book(Long.parseLong(detail[0]), detail[1], detail[2], BookGenre.valueOf(detail[3]), LocalDate.parse(detail[4]), Boolean.parseBoolean(detail[5]));
+                            books.add(book);
+                        }
+                    }
+
+                    case "availability" -> {
+                        if (detail[5].equals(loadBy.toString())) {
                             Book book = new Book(Long.parseLong(detail[0]), detail[1], detail[2], BookGenre.valueOf(detail[3]), LocalDate.parse(detail[4]), Boolean.parseBoolean(detail[5]));
                             books.add(book);
                         }
@@ -167,4 +177,6 @@ public class BookService implements BookRepository {
             System.out.println("Unable to save book!");
         }
     }
+
+
 }
