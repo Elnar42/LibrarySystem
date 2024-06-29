@@ -1,8 +1,13 @@
 package org.example.domain;
 
 import org.example.enums.BookGenre;
+import org.example.repisitory.GeneralRepository;
+import org.example.service.BookService;
+import org.example.service.UserService;
 
 import java.time.LocalDate;
+
+import static org.example.service.BookService.books;
 
 public class Book {
 
@@ -17,13 +22,13 @@ public class Book {
 
     private boolean isAvailable;
 
-    public Book(Long id, String title, String author, BookGenre genre, LocalDate publicationDate) {
+    public Book(Long id, String title, String author, BookGenre genre, LocalDate publicationDate, boolean isAvailable) {
         this.id = id;
         this.title = title;
         this.author = author;
         this.genre = genre;
         this.publicationDate = publicationDate;
-        this.isAvailable = true;
+        this.isAvailable = isAvailable;
     }
 
     public Long getId() {

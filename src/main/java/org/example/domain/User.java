@@ -122,8 +122,8 @@ public class User {
     }
 
     public static void verifyUserDetails(String username, String password) {
-        if (username == null || username.trim().length() <= 1)
-            throw new WrongUsernameException("Username must be provided and have at least 2 characters.");
+        if (username == null || username.trim().length() <= 1 || username.contains(","))
+            throw new WrongUsernameException("Username format is wrong!");
         if (password == null || password.length() < MIN_PASSWORD_LENGTH)
             throw new WrongPasswordException("Password must be at least " + MIN_PASSWORD_LENGTH + " characters long.");
     }

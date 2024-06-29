@@ -2,22 +2,21 @@ package org.example.controller;
 
 import org.example.domain.User;
 import org.example.enums.UserRole;
+import org.example.repisitory.GeneralRepository;
 import org.example.service.UserService;
 
-import java.io.*;
-import java.util.HashMap;
-import java.util.Random;
+import java.io.IOException;
 import java.util.Scanner;
 import java.util.Set;
 
-public class UserAuthenticationController {
-    private static final HashMap<Long, User> users = new HashMap<>();
-    private static final UserService userService = new UserService();
-    public static User SignIn(Scanner scan) throws IOException {
+import static org.example.service.UserService.getUsers;
 
+public class UserAuthenticationController {
+    private static final UserService userService = new UserService();
+
+    public static User SignIn(Scanner scan) throws IOException {
         System.out.println("Enter Username: ");
         String username = scan.next().trim();
-
         User user = userService.loadUserByUsername(username);
         if (user == null) {
             System.out.println("User does not exist");
@@ -38,7 +37,6 @@ public class UserAuthenticationController {
             }
             password = scan.next().trim();
         }
-
         if (!success) {
             System.out.println("Signing in is unsuccessful!");
             return null;
@@ -53,43 +51,35 @@ public class UserAuthenticationController {
     public static User SignUp(Scanner scan) throws IOException {
         if (!userService.loadAllUsers()) {
             System.out.println("Something went wrong! Try later!");
-            users.clear();
+            getUsers().clear();
             return null;
         }
-        Long id = generateID();
-        Set<Long> keySet = users.keySet();
+        Long id = GeneralRepository.generateID();
+        Set<Long> keySet = getUsers().keySet();
         while (keySet.contains(id)) {
-            id = generateID();
+            id = GeneralRepository.generateID();
         }
         System.out.println("Enter Username: ");
         String username = scan.next().trim();
 
         if (userService.loadUserByUsername(username) != null) {
             System.out.println("Username is taken!");
-            users.clear();
+            getUsers().clear();
             return null;
         }
-
         System.out.println("Enter Password: ");
         String password = scan.next().trim();
         User user = new User(id, username, password, null, null, null, UserRole.MEMBER);
-        if (!userService.takeUserRecord(user)) {
+        if (!userService.saveUser(user)) {
             System.out.println("Something unexpected happened! User was not registered!");
-            users.clear();
+            getUsers().clear();
             return null;
         }
-         users.clear();
-        System.out.println("Signing up is successful! Keep in mind to add your email, phone number and address in later stage!");
+        getUsers().clear();
+        System.out.println("Signing up is successful! Complete your profile by adding your email, phone number and address!");
         return user;
     }
 
-    public static Long generateID() {
-        return new Random().nextLong(9000) + 1000;
-    }
-
-    public static HashMap<Long, User> getUsers() throws IOException {
-        return users;
-    }
 
 }
 
