@@ -6,7 +6,9 @@ import java.io.IOException;
 
 public interface UserRepository {
 
-     boolean takeUserRecord(User user);
+
+     void removeUserById(Long id);
+     boolean saveUser(User user);
 
      boolean loadAllUsers() throws IOException;
 

@@ -4,5 +4,7 @@ public enum BookGenre {
     FICTION,
     NONFICTION,
     SCIENCE,
-    ART
+    ART,
+    FANTASY,
+    CLASSIC
 }
