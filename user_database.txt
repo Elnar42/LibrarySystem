@@ -1,0 +1,11 @@
+7248,Librarian,$2a$10$5bwWlDDeLwdg99l6Hb8BXOaFS4xSOg1XcYVqdp391JXgS.DV736z2,Baku Azerbaijan,+994503421212,elibrarian@gmail.com,LIBRARIAN
+7249,elsad_12,$2a$10$hD6M1l9z9gmbzQ1mIIJ6V.9Ql8O6vIWdjKHMz8r9nQziIJ/V30SvG,Baku Azerbaijan,+994104531212,elsad12@gmail.com,MEMBER
+7250,asim_42,$2a$10$DB04MGmW6QEXVLTtZG8ZP.maVBkEBz6Yk.vKirCXbRTXOuqJiic9e,Baku Azerbaijan,+994778906756,asim42@gmail.com,MEMBER
+7251,eldar_123,$2a$10$78E1gtORQ5h/qk/7ELgOtepIsZDCDvvxKGVfcSBrkxOxEp.ao6Mrq,Baku Azerbaijan,+994551231213,eldar1234@gmail.com,MEMBER
+7252,anar_032,$2a$10$KsMn7spsK4HR1gFj5U22De4yAPhUawubb51ak1RQBtDUiUfWLNDDi,Baku Azerbaijan,+994773211213,anarqocayev12@gmail.com,MEMBER
+7253,aqsin_12345,$2a$10$Oh6I9sAF3AZWfq1aXOHQTe9i45kCVHn.ZC0J8cRaTKJnWGZQREG3G,Baku Azerbaijan,+994999991990,aqsin12332@gmail.com,MEMBER
+7255,ramil_342,$2a$10$20FNjXZRqZAOU3Cna8831OESdZMWPmgsyjQvsYXFFmmRq53WRbwwK,Baku Azerbaijan,+994513454515,ramilaliyev1232@gmail.com,MEMBER
+7256,alim_1232,$2a$10$RCkJUeDpGNkoZGg9YrNMhuWCevQgvxu5hME3ZLpz3mp8L5.Lr7oCm,Baku Azerbaijan,+994553121212,alimqasimov1432@gmail.com,MEMBER
+7257,akif_90452,$2a$10$VQI1tQ.mWpXR8XVd5kXngejmvmMMvGhhLKACUTjDAgpCiAMbfSJCO,Baku Azerbaijan,+994771655423,akifAliyev90452@gmail.com,MEMBER
+8322,userBySignUp,$2a$10$A4vCk/QaPJ/VvaRxNtwsIO/nLOMeT0UygyOF0s7uxn4N8wul0n.my,null,null,null,MEMBER
+4003,secondUserBySignUp,$2a$10$Gifv9rY8AzdeYMtKPkY0neOTUCrPZsDyfuCQqjq36XQISj6fCBnlC,null,null,null,MEMBER
