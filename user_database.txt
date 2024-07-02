@@ -1,11 +1,27 @@
-7248,Librarian,$2a$10$5bwWlDDeLwdg99l6Hb8BXOaFS4xSOg1XcYVqdp391JXgS.DV736z2,Baku Azerbaijan,+994503421212,elibrarian@gmail.com,LIBRARIAN
-7249,elsad_12,$2a$10$hD6M1l9z9gmbzQ1mIIJ6V.9Ql8O6vIWdjKHMz8r9nQziIJ/V30SvG,Baku Azerbaijan,+994104531212,elsad12@gmail.com,MEMBER
-7250,asim_42,$2a$10$DB04MGmW6QEXVLTtZG8ZP.maVBkEBz6Yk.vKirCXbRTXOuqJiic9e,Baku Azerbaijan,+994778906756,asim42@gmail.com,MEMBER
-7251,eldar_123,$2a$10$78E1gtORQ5h/qk/7ELgOtepIsZDCDvvxKGVfcSBrkxOxEp.ao6Mrq,Baku Azerbaijan,+994551231213,eldar1234@gmail.com,MEMBER
-7252,anar_032,$2a$10$KsMn7spsK4HR1gFj5U22De4yAPhUawubb51ak1RQBtDUiUfWLNDDi,Baku Azerbaijan,+994773211213,anarqocayev12@gmail.com,MEMBER
-7253,aqsin_12345,$2a$10$Oh6I9sAF3AZWfq1aXOHQTe9i45kCVHn.ZC0J8cRaTKJnWGZQREG3G,Baku Azerbaijan,+994999991990,aqsin12332@gmail.com,MEMBER
-7255,ramil_342,$2a$10$20FNjXZRqZAOU3Cna8831OESdZMWPmgsyjQvsYXFFmmRq53WRbwwK,Baku Azerbaijan,+994513454515,ramilaliyev1232@gmail.com,MEMBER
-7256,alim_1232,$2a$10$RCkJUeDpGNkoZGg9YrNMhuWCevQgvxu5hME3ZLpz3mp8L5.Lr7oCm,Baku Azerbaijan,+994553121212,alimqasimov1432@gmail.com,MEMBER
-7257,akif_90452,$2a$10$VQI1tQ.mWpXR8XVd5kXngejmvmMMvGhhLKACUTjDAgpCiAMbfSJCO,Baku Azerbaijan,+994771655423,akifAliyev90452@gmail.com,MEMBER
-8322,userBySignUp,$2a$10$A4vCk/QaPJ/VvaRxNtwsIO/nLOMeT0UygyOF0s7uxn4N8wul0n.my,null,null,null,MEMBER
-4003,secondUserBySignUp,$2a$10$Gifv9rY8AzdeYMtKPkY0neOTUCrPZsDyfuCQqjq36XQISj6fCBnlC,null,null,null,MEMBER
+1212,Librarian1,$2a$10$E1HC/dW2Xn3Vy6xZ4Xo3rOsCy6U7D4Bn0O5/DAco4y.sECxlZ2EwS,Not-provided,+994503490943,elibrarian345@gmail.com,LIBRARIAN,100.0
+1213,Librarian2,$2a$10$qu4wOXjlMLz8nqrmsOTr6OBF32xz2N/x8K7qizMdaZk.bNR9ZCtgi,Nizami,+994503490943,elibrarian421@gmail.com,LIBRARIAN,1000.0
+1214,elmin_12112,$2a$10$szvPbyE0DTlb8r2R.3mGeeSwlW9SlgkQRTx4jEjGJVxv/mzGqp1/K,Xalqlar mts,+994504321232,sbfudfbyubg123@gmail.com,MEMBER,100.0
+1215,aqsin_343,$2a$10$csTKink1PEYG2PyfpH4t7uTePfWjS5cPHMMy3V7tQ.FgV2FlHs19W,Nefthciler mts,+994509875647,12312ttgg213@gmail.com,MEMBER,100.0
+1216,elchin_2323,$2a$10$zGuJMwFEvVwMJo4JO0ITdOUNG7.Ueg29W99xN32mpsHrbuOH6EMhC,Nizami mts,+994513498978,123123123hsdhfj@gmail.com,MEMBER,100.0
+1217,eldar9884,$2a$10$yqHdHvBJc31wZ1JtI33u5ulyzfZwt4qCTJTMEXoxmMghV8U2C3Fa6,Xalqlar mts,+994513487941,qwert231@gmail.com,MEMBER,100.0
+1218,humbet73743,$2a$10$dzARiUuogS7BeqlcjRvAo.En1LiCmD8Ry.Jz920lXlzObD98Jl6G6,Elmer mts,+994554390945,asdfg23424@gmail.com,MEMBER,100.0
+1219,lale323,$2a$10$w8qUHxWWdFCQM3bWiMQwR.kTt14tJgaRksRXI6WFNnRf8PB7GK43W,Genclik,+994553540444,dfghjkl6789@gmail.com,MEMBER,100.0
+1220,nilu3434,$2a$10$ajfQ222jUsJ5d2ERX4kwiu/ceczI75FoIWr23Qd29CjGLlkge3ZRq,Suvelan,+994553510141,yuiop345@gmail.com,MEMBER,100.0
+1221,elchin3434,$2a$10$n0N6I3mAH5.sVExjjQKEren8FyLWCL/GrB5nrg0UXI3pXmjxPxD52,Baku Azerbaijan,+994703200909,yuiophj32@gmail.com,MEMBER,100.0
+1222,rufet_12,$2a$10$sJr3Mt41RMudKU4D.lfrIe9YIK/icOySi2dg9Uv.8JpIPu8bRQ2lG,Elimler,+994103101010,cvbnm12343@gmail.com,MEMBER,100.0
+1223,ealiyev121,$2a$10$vLVMoMxK2NnkrhiMPFTL2OdZ.cwgKx4ZcxcCzf9uUyIf4d/I4IXXi,Nesimi,+994509879943,dfghjkvbn24@gmail.com,MEMBER,100.0
+1224,perviz2323,$2a$10$tOXXpfc9RLFmeiiS9RqequcYwXsITsqty8SWLp.vQvSNrGqaRyYsy,Icherisheher,+994551231212,rtyuio6789@gmail.com,MEMBER,100.0
+1225,ilkin1234,$2a$10$mwQf/3L0to1gQaCWg.V1X.BJ.VIJUgkH4fvOJ.QG36.5gq.cp6IzC,Sahil,+994556542312,iop2323@gmail.com,MEMBER,100.0
+1226,elgun2323,$2a$10$ndlCeg/jieM1ulGy.2d7a.8vDBnxCs266hJtE9iKF2iCB/QaPRcJe,Icherisheher,+994503211223,ertyuio234@gmail.com,MEMBER,100.0
+1227,gunel5432,$2a$10$biTcbC78EhwxPcN6hgAlae.JdfFZwOczQl66ANrf3JsktDJvVxyHG,Sahil,+9945553354534,gfdsa24@gmail.com,MEMBER,100.0
+1228,vuset456,$2a$10$P8li0N3NmtlygQ3Q62pxq.OlC6PRLIFc8ybNdCh.XXPiz91nD/b4.,Bakmil,+994551232312,vbnmnbv2441@gmail.com,MEMBER,100.0
+1229,xanlar09894,$2a$10$eK2OjcpZ40AQCsPhffj4WOPPmpe4oFjwa7OUMLelfDcNIV6jqt0LG,20 Yanvar,+994708909090,xcvbnmbvcx1313@gmail.com,MEMBER,100.0
+1230,vusal343434,$2a$10$qha9W50ptYbh6zxTNSXUhuetrhtbA9dDpxk2w3Q7wPVE36iXAiY1W,Inshatchilar,+994501231212,vbnmvgy133244@gmail.com,MEMBER,100.0
+1231,gunseh32323,$2a$10$t61XnkPwQ2F5MQ0TABf1juoheULJdmcXll3ZaFS0JzoJR03FT9O7a,Memar Ecemi,+994772343445,ghjkhgghjk435@gmail.com,MEMBER,100.0
+1232,gunduz9391,$2a$10$m8LKHeXo6.wlvkbRUIaeL.CbgKnlaS5bVmg.5k67yAPdRQZ.jYrYu,Genclik,+994771242425,thjkhghhjb454@gmail.com,MEMBER,100.0
+1233,elkin_43194,$2a$10$2MX9mdVsvcJ9a5vlDbJM2Ox7/iqfh7hTSM.72lQhIWuIcGpv.GCx6,Icherisheher,+994778908767,esedrgtyh75474@gmail.com,MEMBER,100.0
+1234,eljan2323132,$2a$10$VRcwam.20.YxTTur9pRR..FrglGqPsI6by7fDReTWATjeyLmUmkNO,Elimler,+994775679013,elkghans234323@gmail.com,MEMBER,100.0
+9451,Elnar234,$2a$10$oPZ5fsm9MqyFxbH3.JUF8.viyGNf1d9E9p4ZXVd9kQ4d/EMifAs9e,null,null,null,MEMBER,100.0
+7585,Elkkgg,$2a$10$cjVCA8U6eE3F5Js3sRGPNeHddZ3anuyIZ94zi7FFYjpAlyK0iVjNa,null,null,null,MEMBER,100.0
+2895,Elchin1234,$2a$10$a8Nt.lV0DbYqBngkIspr6.e/Ni2/S7GBYza3gEJASi/MkgBG2GnAO,null,null,null,MEMBER,100.0
+9818,yyuububububub,$2a$10$K2OadnMv8d8mMTrSpC/q9eHbxcbolo1g5GGw4DJTxX6tUG9JaAAqe,null,null,null,MEMBER,100.0

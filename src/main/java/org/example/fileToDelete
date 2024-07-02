@@ -1,0 +1,24 @@
+        service.saveUser(new User(1212L, "Librarian1", "Librarian123@", "Not-provided", "+994503490943", "elibrarian345@gmail.com", UserRole.LIBRARIAN, 100.0));
+        service.saveUser(new User(1213L, "Librarian2", "Librarian123@", "Nizami", "+994503490943", "elibrarian421@gmail.com", UserRole.LIBRARIAN, 1000.0));
+        service.saveUser(new User(1214L, "elmin_12112", "qwerty123", "Xalqlar mts", "+994504321232", "sbfudfbyubg123@gmail.com", UserRole.MEMBER, 100.0));
+        service.saveUser(new User(1215L, "aqsin_343", "letmein", "Nefthciler mts", "+994509875647", "12312ttgg213@gmail.com", UserRole.MEMBER, 100.0));
+        service.saveUser(new User(1216L, "elchin_2323", "password123", "Nizami mts", "+994513498978", "123123123hsdhfj@gmail.com", UserRole.MEMBER, 100.0));
+        service.saveUser(new User(1217L, "eldar9884", "Aabc123", "Xalqlar mts", "+994513487941", "qwert231@gmail.com", UserRole.MEMBER, 100.0));
+        service.saveUser(new User(1218L, "humbet73743", "admin123", "Elmer mts", "+994554390945", "asdfg23424@gmail.com", UserRole.MEMBER, 100.0));
+        service.saveUser(new User(1219L, "lale323", "changeme", "Genclik", "+994553540444", "dfghjkl6789@gmail.com", UserRole.MEMBER, 100.0));
+        service.saveUser(new User(1220L, "nilu3434", "passord1212", "Suvelan", "+994553510141", "yuiop345@gmail.com", UserRole.MEMBER, 100.0));
+        service.saveUser(new User(1221L, "elchin3434", "hashPassword3434@", "Baku Azerbaijan", "+994703200909", "yuiophj32@gmail.com", UserRole.MEMBER, 100.0));
+        service.saveUser(new User(1222L, "rufet_12", "34343423112@", "Elimler", "+994103101010", "cvbnm12343@gmail.com", UserRole.MEMBER, 100.0));
+        service.saveUser(new User(1223L, "ealiyev121", "uyerfdsdf32", "Nesimi", "+994509879943", "dfghjkvbn24@gmail.com", UserRole.MEMBER, 100.0));
+        service.saveUser(new User(1224L, "perviz2323", "gunessll2312@", "Icherisheher", "+994551231212", "rtyuio6789@gmail.com", UserRole.MEMBER, 100.0));
+        service.saveUser(new User(1225L, "ilkin1234", "pubg323", "Sahil", "+994556542312", "iop2323@gmail.com", UserRole.MEMBER, 100.0));
+        service.saveUser(new User(1226L, "elgun2323", "elhcde23", "Icherisheher", "+994503211223", "ertyuio234@gmail.com", UserRole.MEMBER, 100.0));
+        service.saveUser(new User(1227L, "gunel5432", "Ar123x$33231", "Sahil", "+9945553354534", "gfdsa24@gmail.com", UserRole.MEMBER, 100.0));
+        service.saveUser(new User(1228L, "vuset456", "Adfsdvv23424", "Bakmil", "+994551232312", "vbnmnbv2441@gmail.com", UserRole.MEMBER, 100.0));
+        service.saveUser(new User(1229L, "xanlar09894", "elvdvd34@", "20 Yanvar", "+994708909090", "xcvbnmbvcx1313@gmail.com", UserRole.MEMBER, 100.0));
+        service.saveUser(new User(1230L, "vusal343434", "dffsfds234", "Inshatchilar", "+994501231212", "vbnmvgy133244@gmail.com", UserRole.MEMBER, 100.0));
+        service.saveUser(new User(1231L, "gunseh32323", "sdfsdfsdf23", "Memar Ecemi", "+994772343445", "ghjkhgghjk435@gmail.com", UserRole.MEMBER, 100.0));
+        service.saveUser(new User(1232L, "gunduz9391", "tuncarw1245", "Genclik", "+994771242425", "thjkhghhjb454@gmail.com", UserRole.MEMBER, 100.0));
+        service.saveUser(new User(1233L, "elkin_43194", "ulken2313", "Icherisheher", "+994778908767", "esedrgtyh75474@gmail.com", UserRole.MEMBER, 100.0));
+        service.saveUser(new User(1234L, "eljan2323132", "12312gf311234", "Elimler", "+994775679013", "elkghans234323@gmail.com", UserRole.MEMBER, 100.0));
+

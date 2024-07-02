@@ -115,8 +115,8 @@ public class BookService implements BookRepository {
     }
 
     @Override
-    public List<Book> loadByAvailability() {
-        return loadBook("availability", true);
+    public List<Book> loadByAvailability(boolean availability) {
+        return loadBook("availability", availability);
     }
     private <T> List<Book> loadBook(String loader, T loadBy) {
         List<Book> books = new LinkedList<>();
