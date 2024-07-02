@@ -61,10 +61,12 @@ public class BookService implements BookRepository {
     }
 
     @Override
-    public void setBookAvailability(Long id, boolean available) throws IOException {
+    public void setBookAvailability(Long id, boolean available) {
         loadAllBooks();
-        if (books.entrySet().stream().noneMatch(t -> t.getValue().getId().equals(id)))
-            throw new IllegalArgumentException("Book with given id (" + id + ") does not exist in the library!");
+        if (books.entrySet().stream().noneMatch(t -> t.getValue().getId().equals(id))) {
+            System.out.println("Book with given id (" + id + ") does not exist in the library!");
+            return;
+        }
         Book book = books.get(id);
         book.setAvailable(available);
         List<Book> books1 = new ArrayList<>();
@@ -166,7 +168,7 @@ public class BookService implements BookRepository {
         }
     }
 
-    private void saveBookWithoutAppend(List<Book> books) throws IOException {
+    private void saveBookWithoutAppend(List<Book> books) {
         File file = new File("book_database.txt");
         try (BufferedWriter bw = new BufferedWriter(new FileWriter(file, false))) {
             for (Book book : books) {

@@ -31,6 +31,7 @@ public interface UserRepository {
     void changeEmail(Scanner scan, Long id);
 
     void changeAddress(Scanner scan, Long id);
+    void changePhoneNumber(Scanner scan, Long id);
 
     void increaseAccountBalance(Scanner scan, Long id);
 
