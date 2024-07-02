@@ -8,11 +8,10 @@ import java.io.*;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Scanner;
 
 public class UserService implements UserRepository {
-
     public static final HashMap<Long, User> users = new HashMap<>();
-
 
     //READY
     @Override
@@ -24,7 +23,7 @@ public class UserService implements UserRepository {
             while ((details = br.readLine()) != null) {
                 String[] userDetails = details.split(",");
                 if (userDetails[0].isEmpty()) break;
-                User user = new User(Long.parseLong(userDetails[0]), userDetails[1], userDetails[2], userDetails[3], userDetails[4], userDetails[5], UserRole.valueOf(userDetails[6]));
+                User user = new User(Long.parseLong(userDetails[0]), userDetails[1], userDetails[2], userDetails[3], userDetails[4], userDetails[5], UserRole.valueOf(userDetails[6]), Double.parseDouble(userDetails[7]));
                 if (user.getId().equals(id)) continue;
                 usersList.add(user);
             }
@@ -32,8 +31,6 @@ public class UserService implements UserRepository {
         } catch (IOException io) {
             System.out.println("Error in removing user!");
         }
-
-
     }
 
     //READY
@@ -65,7 +62,7 @@ public class UserService implements UserRepository {
             while ((details = br.readLine()) != null) {
                 String[] userDetails = details.split(",");
                 if (userDetails[0].isEmpty()) break;
-                User user = new User(Long.parseLong(userDetails[0]), userDetails[1], userDetails[2], userDetails[3], userDetails[4], userDetails[5], UserRole.valueOf(userDetails[6]));
+                User user = new User(Long.parseLong(userDetails[0]), userDetails[1], userDetails[2], userDetails[3], userDetails[4], userDetails[5], UserRole.valueOf(userDetails[6]), Double.parseDouble(userDetails[7]));
                 user.setHashedPassword(userDetails[2]);
                 users.put(Long.parseLong(userDetails[0]), user);
             }
@@ -97,6 +94,87 @@ public class UserService implements UserRepository {
         return LoadUser("role", role);
     }
 
+    @Override
+    public void changeUsername(Scanner scan, Long id) {
+        User user = loadUserByUserId(id).getFirst();
+        System.out.println("Welcome back '" + user.getUsername() + "'!");
+        System.out.println("Enter your password to continue the process: ");
+        if (passwordAttemptChecker(scan, user)) {
+            System.out.println("Unauthorized attempt to change username! Try later!");
+        } else {
+            System.out.println("Enter a new username: ");
+            String newUsername = scan.nextLine();
+            removeUserById(id);
+            user.setUsername(newUsername);
+            saveUser(user);
+        }
+    }
+
+    @Override
+    public void resetPassword(Scanner scan, Long id) {
+        User user = loadUserByUserId(id).getFirst();
+        System.out.println("Welcome back '" + user.getUsername() + "'!");
+        System.out.println("Enter an old password: ");
+        if (passwordAttemptChecker(scan, user)) {
+            System.out.println("Unauthorized attempt to change password! Try later!");
+        } else {
+            System.out.println("Enter a new password: ");
+            String newPassword = scan.next();
+            removeUserById(id);
+            user.setHashedPassword(user.hashPassword(newPassword));
+            saveUser(user);
+        }
+    }
+
+
+    @Override
+    public void changeEmail(Scanner scan, Long id) {
+        User user = loadUserByUserId(id).getFirst();
+        System.out.println("Welcome back '" + user.getUsername() + "'!");
+        System.out.println("Enter your password to continue the process: ");
+        if (passwordAttemptChecker(scan, user)) {
+            System.out.println("Unauthorized attempt to change email! Try later!");
+        } else {
+            System.out.println("Enter an new email: ");
+            String email = scan.nextLine();
+            removeUserById(id);
+            user.setEmail(email);
+            saveUser(user);
+        }
+    }
+
+    @Override
+    public void changeAddress(Scanner scan, Long id) {
+        User user = loadUserByUserId(id).getFirst();
+        System.out.println("Welcome back '" + user.getUsername() + "'!");
+        System.out.println("Enter your password to continue the process: ");
+        if (passwordAttemptChecker(scan, user)) {
+            System.out.println("Unauthorized attempt to change address! Try later!");
+        } else {
+            System.out.println("Enter an new address: ");
+            String address = scan.nextLine();
+            removeUserById(id);
+            user.setEmail(address);
+            saveUser(user);
+        }
+    }
+
+    @Override
+    public void increaseAccountBalance(Scanner scan, Long id) {
+        User user = loadUserByUserId(id).getFirst();
+        System.out.println("Welcome back '" + user.getUsername() + "'!");
+        System.out.println("Enter your password to continue the process: ");
+        if (passwordAttemptChecker(scan, user)) {
+            System.out.println("Unauthorized attempt to add deposit! Try later!");
+        } else {
+            System.out.println("Enter an amount you want to deposit to the account: ");
+            Double deposit = scan.nextDouble();
+            user.setBalance(user.getBalance() + deposit);
+            removeUserById(id);
+            saveUser(user);
+        }
+    }
+
 
     //READY
     private <T> List<User> LoadUser(String load, T loadBy) {
@@ -109,7 +187,7 @@ public class UserService implements UserRepository {
                 switch (load) {
                     case "username" -> {
                         if (userDetails[1].equals(String.valueOf(loadBy))) {
-                            User user = new User(Long.parseLong(userDetails[0]), userDetails[1], userDetails[2], userDetails[3], userDetails[4], userDetails[5], UserRole.valueOf(userDetails[6]));
+                            User user = new User(Long.parseLong(userDetails[0]), userDetails[1], userDetails[2], userDetails[3], userDetails[4], userDetails[5], UserRole.valueOf(userDetails[6]), Double.parseDouble(userDetails[7]));
                             user.setHashedPassword(userDetails[2]);
                             userList.add(user);
                         }
@@ -117,7 +195,7 @@ public class UserService implements UserRepository {
                     case "id" -> {
                         Long id = Long.parseLong(userDetails[0]);
                         if (id.equals(loadBy)) {
-                            User user = new User(Long.parseLong(userDetails[0]), userDetails[1], userDetails[2], userDetails[3], userDetails[4], userDetails[5], UserRole.valueOf(userDetails[6]));
+                            User user = new User(Long.parseLong(userDetails[0]), userDetails[1], userDetails[2], userDetails[3], userDetails[4], userDetails[5], UserRole.valueOf(userDetails[6]), Double.parseDouble(userDetails[7]));
                             user.setHashedPassword(userDetails[2]);
                             userList.add(user);
                         }
@@ -125,7 +203,7 @@ public class UserService implements UserRepository {
                     case "address" -> {
                         String address = userDetails[3];
                         if (address.contains(loadBy.toString())) {
-                            User user = new User(Long.parseLong(userDetails[0]), userDetails[1], userDetails[2], userDetails[3], userDetails[4], userDetails[5], UserRole.valueOf(userDetails[6]));
+                            User user = new User(Long.parseLong(userDetails[0]), userDetails[1], userDetails[2], userDetails[3], userDetails[4], userDetails[5], UserRole.valueOf(userDetails[6]), Double.parseDouble(userDetails[7]));
                             user.setHashedPassword(userDetails[2]);
                             userList.add(user);
                         }
@@ -134,7 +212,7 @@ public class UserService implements UserRepository {
                     case "role" -> {
                         UserRole role = UserRole.valueOf(userDetails[6]);
                         if (role.equals(loadBy)) {
-                            User user = new User(Long.parseLong(userDetails[0]), userDetails[1], userDetails[2], userDetails[3], userDetails[4], userDetails[5], UserRole.valueOf(userDetails[6]));
+                            User user = new User(Long.parseLong(userDetails[0]), userDetails[1], userDetails[2], userDetails[3], userDetails[4], userDetails[5], UserRole.valueOf(userDetails[6]), Double.parseDouble(userDetails[7]));
                             user.setHashedPassword(userDetails[2]);
                             userList.add(user);
                         }
@@ -160,6 +238,22 @@ public class UserService implements UserRepository {
         }
     }
 
+    public static boolean passwordAttemptChecker(Scanner scan, User user) {
+        String password = scan.next().trim();
+        int attemptCount = 3;
+        boolean success = true;
+        while (user.verifyPassword(password)) {
+            attemptCount--;
+            System.out.println("Wrong password!");
+            if (attemptCount != 0) System.out.println("You have " + attemptCount + " chances left!");
+            if (attemptCount == 0 && user.verifyPassword(password)) {
+                success = false;
+                break;
+            }
+            password = scan.next().trim();
+        }
+        return !success;
+    }
 
     public static HashMap<Long, User> getUsers() {
         return users;

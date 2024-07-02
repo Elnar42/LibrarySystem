@@ -14,30 +14,21 @@ import static org.example.service.UserService.getUsers;
 public class UserAuthenticationController {
     private static final UserService userService = new UserService();
 
-    public static User SignIn(Scanner scan) throws IOException {
+    public static User SignIn(Scanner scan) {
         System.out.println("Enter Username: ");
         String username = scan.next().trim();
-        User user = userService.loadUserByUsername(username).getFirst();
+        User user = null;
+
+        if(!userService.loadUserByUsername(username).isEmpty()){
+           user =  userService.loadUserByUsername(username).getFirst();
+        }
         if (user == null) {
             System.out.println("User does not exist");
             return null;
         }
         System.out.println("Enter password: ");
-        String password = scan.next().trim();
 
-        int attemptCount = 3;
-        boolean success = true;
-        while (!user.verifyPassword(password)) {
-            attemptCount--;
-            System.out.println("Wrong password!");
-            if (attemptCount != 0) System.out.println("You have " + attemptCount + " chances left!");
-            if (attemptCount == 0 && !user.verifyPassword(password)) {
-                success = false;
-                break;
-            }
-            password = scan.next().trim();
-        }
-        if (!success) {
+        if (UserService.passwordAttemptChecker(scan, user)) {
             System.out.println("Signing in is unsuccessful!");
             return null;
         } else {
@@ -47,7 +38,7 @@ public class UserAuthenticationController {
         }
     }
 
-    public static User SignUp(Scanner scan) throws IOException {
+    public static User SignUp(Scanner scan){
         if (!userService.loadAllUsers()) {
             System.out.println("Something went wrong! Try later!");
             getUsers().clear();
@@ -61,14 +52,14 @@ public class UserAuthenticationController {
         System.out.println("Enter Username: ");
         String username = scan.next().trim();
 
-        if (userService.loadUserByUsername(username) != null) {
+        if (!userService.loadUserByUsername(username).isEmpty()) {
             System.out.println("Username is taken!");
             getUsers().clear();
             return null;
         }
         System.out.println("Enter Password: ");
         String password = scan.next().trim();
-        User user = new User(id, username, password, null, null, null, UserRole.MEMBER);
+        User user = new User(id, username, password, null, null, null, UserRole.MEMBER, 100.0);
         if (!userService.saveUser(user)) {
             System.out.println("Something unexpected happened! User was not registered!");
             getUsers().clear();
@@ -78,7 +69,6 @@ public class UserAuthenticationController {
         System.out.println("Signing up is successful! Complete your profile by adding your email, phone number and address!");
         return user;
     }
-
 
 }
 

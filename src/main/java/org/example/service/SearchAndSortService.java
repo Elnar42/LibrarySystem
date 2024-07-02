@@ -37,7 +37,7 @@ public class SearchAndSortService implements SearchAndSortRepository {
             case 2 -> searchByGenre(scan);
             case 3 -> searchByAuthor(scan);
             case 4 -> searchByTitle(scan);
-            case 5 -> searchByAvailability();
+            case 5 -> searchByAvailability(scan);
             default -> throw new IllegalArgumentException("Unknown criteria!");
         }
     }
@@ -137,7 +137,6 @@ public class SearchAndSortService implements SearchAndSortRepository {
         display(userList1, "user");
     }
 
-
     //READY
     private void searchByUserRole(Scanner scan) {
         System.out.println("Enter user's role: " + Arrays.toString(UserRole.values()));
@@ -196,8 +195,18 @@ public class SearchAndSortService implements SearchAndSortRepository {
     }
 
     //READY
-    private void searchByAvailability() {
-        List<Book> books = bookService.loadByAvailability();
+    private void searchByAvailability(Scanner scan) {
+        System.out.println("Select one: ");
+        System.out.println("""
+                1. Available
+                2. Unavailable
+                """);
+        int answer = scan.nextInt();
+        List<Book> books = switch (answer) {
+            case 1 -> bookService.loadByAvailability(true);
+            case 2 -> bookService.loadByAvailability(false);
+            default -> throw new IllegalArgumentException("Invalid choice!");
+        };
         display(books, "book");
     }
 
@@ -235,15 +244,15 @@ public class SearchAndSortService implements SearchAndSortRepository {
     }
 
     //READY
-    private <T extends Displayable> void display(List<T> thingsToDisplay, String message) {
-        System.out.println("Here is (are) an available " + message + "(s): ");
-        if (!thingsToDisplay.isEmpty()) {
+    private <T extends Displayable> void display(List<T> thingToDisplay, String message) {
+        System.out.println("Here is (are) " + message + "(s): ");
+        if (!thingToDisplay.isEmpty()) {
             System.out.println("---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------");
-            thingsToDisplay.forEach(t -> System.out.println(t.toFormattedString()));
+            thingToDisplay.forEach(t -> System.out.println(t.toFormattedString()));
             System.out.println("---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------");
         } else {
             System.out.println("--------------------------------");
-            System.out.println("No available " + message + " found!");
+            System.out.println("No " + message + " found!");
             System.out.println("--------------------------------");
         }
     }

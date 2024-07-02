@@ -11,4 +11,6 @@ public interface SearchAndSortRepository {
     void searchUsers(Scanner scan);
 
     void sortUsers(Scanner scan);
+
 }
+

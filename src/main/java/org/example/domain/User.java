@@ -23,12 +23,13 @@ public class User implements Displayable {
 
     private UserRole role;
 
+    private Double balance;
 
     private static final int MIN_PASSWORD_LENGTH = 7;
     private static final String EMAIL_REGEX = "^[a-zA-Z0-9_+&*-]+(?:\\.[a-zA-Z0-9_+&*-]+)*@(?:[a-zA-Z0-9-]+\\.)+[a-zA-Z]{2,}$";
     private static final String PHONE_REGEX = "^\\+994(50|51|55|70|77|10)(\\d{7})$";
 
-    public User(Long id, String username, String password, String address, String phone, String email, UserRole role) {
+    public User(Long id, String username, String password, String address, String phone, String email, UserRole role, Double balance) {
         verifyUserDetails(username, password);
         this.id = id;
         this.username = username;
@@ -37,15 +38,15 @@ public class User implements Displayable {
         this.phone = phone;
         this.email = email;
         this.role = role;
+        this.balance = balance;
     }
 
-
-    private String hashPassword(String plainPassword) {
+    public String hashPassword(String plainPassword) {
         return BCrypt.hashpw(plainPassword, BCrypt.gensalt());
     }
 
     public boolean verifyPassword(String password) {
-        return BCrypt.checkpw(password, this.hashedPassword);
+        return !BCrypt.checkpw(password, this.hashedPassword);
     }
 
     public void setId(Long id) {
@@ -118,20 +119,27 @@ public class User implements Displayable {
 
     @Override
     public String toString() {
-        return id + "," + username + "," + hashedPassword + "," + address + "," + phone + "," + email + "," + role;
+        return id + "," + username + "," + hashedPassword + "," + address + "," + phone + "," + email + "," + role + "," + balance;
     }
 
     @Override
     public String toFormattedString() {
-        return String.format("ID: %-3s | Username: %-25s | Address: %-30s | Phone: %-15s | Email: %-30s | Role: %-20s",
-                id, username, address, phone, email, role);
+        return String.format("ID: %-10s | Username: %-15s | Balance: %-10s | Address: %-20s | Phone: %-20s | Email: %-30s | Role: %s",
+                id, username, balance, address, phone, email, role);
     }
-
 
     public static void verifyUserDetails(String username, String password) {
         if (username == null || username.trim().length() <= 1 || username.contains(","))
             throw new WrongUsernameException("Username format is wrong!");
         if (password == null || password.length() < MIN_PASSWORD_LENGTH)
             throw new WrongPasswordException("Password must be at least " + MIN_PASSWORD_LENGTH + " characters long.");
+    }
+
+    public Double getBalance() {
+        return balance;
+    }
+
+    public void setBalance(Double balance) {
+        this.balance = balance;
     }
 }
