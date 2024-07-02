@@ -84,6 +84,7 @@ public class UserService implements UserRepository {
         return LoadUser("id", id);
     }
 
+
     @Override
     public List<User> loadUserByUserAddress(String address) {
         return LoadUser("address", address);
@@ -97,32 +98,39 @@ public class UserService implements UserRepository {
     @Override
     public void changeUsername(Scanner scan, Long id) {
         User user = loadUserByUserId(id).getFirst();
-        System.out.println("Welcome back '" + user.getUsername() + "'!");
         System.out.println("Enter your password to continue the process: ");
         if (passwordAttemptChecker(scan, user)) {
             System.out.println("Unauthorized attempt to change username! Try later!");
         } else {
             System.out.println("Enter a new username: ");
+            scan.nextLine();
             String newUsername = scan.nextLine();
-            removeUserById(id);
-            user.setUsername(newUsername);
-            saveUser(user);
+
+            try {
+                user.setUsername(newUsername);
+                removeUserById(id);
+                saveUser(user);
+                System.out.println("Username successfully changed!");
+            }catch (Exception exception){
+                System.out.println("Error in updating email! Reason: " + exception.getCause().toString());
+            }
         }
     }
 
     @Override
     public void resetPassword(Scanner scan, Long id) {
         User user = loadUserByUserId(id).getFirst();
-        System.out.println("Welcome back '" + user.getUsername() + "'!");
         System.out.println("Enter an old password: ");
         if (passwordAttemptChecker(scan, user)) {
             System.out.println("Unauthorized attempt to change password! Try later!");
         } else {
             System.out.println("Enter a new password: ");
+            scan.nextLine();
             String newPassword = scan.next();
-            removeUserById(id);
             user.setHashedPassword(user.hashPassword(newPassword));
+            removeUserById(id);
             saveUser(user);
+            System.out.println("Password successfully set!");
         }
     }
 
@@ -130,39 +138,66 @@ public class UserService implements UserRepository {
     @Override
     public void changeEmail(Scanner scan, Long id) {
         User user = loadUserByUserId(id).getFirst();
-        System.out.println("Welcome back '" + user.getUsername() + "'!");
         System.out.println("Enter your password to continue the process: ");
         if (passwordAttemptChecker(scan, user)) {
             System.out.println("Unauthorized attempt to change email! Try later!");
         } else {
             System.out.println("Enter an new email: ");
+            scan.nextLine();
             String email = scan.nextLine();
-            removeUserById(id);
-            user.setEmail(email);
-            saveUser(user);
+
+            try {
+                user.setEmail(email);
+                removeUserById(id);
+                saveUser(user);
+                System.out.println("Email successfully changed!");
+            }catch (Exception exception){
+                System.out.println("Error in updating email! Reason: " + exception);
+            }
         }
     }
 
     @Override
     public void changeAddress(Scanner scan, Long id) {
         User user = loadUserByUserId(id).getFirst();
-        System.out.println("Welcome back '" + user.getUsername() + "'!");
         System.out.println("Enter your password to continue the process: ");
         if (passwordAttemptChecker(scan, user)) {
             System.out.println("Unauthorized attempt to change address! Try later!");
         } else {
             System.out.println("Enter an new address: ");
+            scan.nextLine();
             String address = scan.nextLine();
+            user.setAddress(address);
             removeUserById(id);
-            user.setEmail(address);
             saveUser(user);
+            System.out.println("Address successfully changed!");
+        }
+    }
+
+    @Override
+    public void changePhoneNumber(Scanner scan, Long id) {
+        User user = loadUserByUserId(id).getFirst();
+        System.out.println("Enter your password to continue the process: ");
+        if (passwordAttemptChecker(scan, user)) {
+            System.out.println("Unauthorized attempt to change address! Try later!");
+        } else {
+            System.out.println("Enter an new phone number (+994 50/51/70/77/20 + 7 number, no space): ");
+            scan.nextLine();
+            String phone = scan.nextLine();
+            try {
+                user.setPhone(phone);
+                removeUserById(id);
+                saveUser(user);
+                System.out.println("Phone number successfully set!");
+            }catch (Exception exception){
+                System.out.println("Error in updating email! Reason: " + exception);
+            }
         }
     }
 
     @Override
     public void increaseAccountBalance(Scanner scan, Long id) {
         User user = loadUserByUserId(id).getFirst();
-        System.out.println("Welcome back '" + user.getUsername() + "'!");
         System.out.println("Enter your password to continue the process: ");
         if (passwordAttemptChecker(scan, user)) {
             System.out.println("Unauthorized attempt to add deposit! Try later!");
@@ -172,6 +207,7 @@ public class UserService implements UserRepository {
             user.setBalance(user.getBalance() + deposit);
             removeUserById(id);
             saveUser(user);
+            System.out.println("Successfully deposited money!");
         }
     }
 

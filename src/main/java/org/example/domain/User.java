@@ -97,7 +97,7 @@ public class User implements Displayable {
     }
 
     public void setEmail(String email) {
-        if (email.matches(EMAIL_REGEX)) throw new WrongEmailException("Email format is not correct!");
+        if (!email.matches(EMAIL_REGEX)) throw new WrongEmailException("Email format is not correct!");
         this.email = email;
     }
 

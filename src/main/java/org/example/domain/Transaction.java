@@ -38,7 +38,7 @@ public class Transaction implements Displayable {
     }
 
     //RETURNING
-    public Transaction(Long userId, Long bookId) throws IOException {
+    public Transaction(Long userId, Long bookId)  {
         LocalDate returnDate = LocalDate.now();
         verifyCredentials(userId, bookId, borrowDate, returnDate, TransactionType.RETURN);
         Long idtoCheck = GeneralRepository.generateID();
@@ -71,10 +71,13 @@ public class Transaction implements Displayable {
 
             case BORROW -> {
 
-                if (returnDate.isBefore(borrowDate))
-                    throw new IllegalArgumentException("Return date is invalid!");
-                if (borrowDate.plusDays(7).isBefore(returnDate))
-                    throw new IllegalArgumentException("Maximum borrow period exceeded (7 days)");
+                if (returnDate.isBefore(borrowDate)) {
+                    System.out.println("Return date is invalid!");
+                    return;
+                }
+                if (borrowDate.plusDays(7).isBefore(returnDate)) {
+                    System.out.println("Maximum borrow period exceeded (7 days)");
+                }
 
             }
 
@@ -82,7 +85,7 @@ public class Transaction implements Displayable {
 
             }
 
-            default -> throw new IllegalArgumentException("No such transaction type!");
+            default -> System.out.println("No such transaction type!");
         }
 
 

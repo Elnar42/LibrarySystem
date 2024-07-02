@@ -40,13 +40,14 @@ public class TransactionService implements TransactionRepository {
 
 
     @Override
-    public void makeTransaction(Transaction transaction) throws IOException {
+    public void makeTransaction(Transaction transaction){
         validateTransaction(transaction);
         File file = new File("transaction_database.txt");
         try (BufferedWriter bw = new BufferedWriter(new FileWriter(file, true))) {
             bw.write(transaction.toString());
             bw.newLine();
 
+            System.out.println("Successfully made a transaction!");
         } catch (IOException io) {
             System.out.println("Unable to make transaction!");
         }
@@ -286,29 +287,35 @@ public class TransactionService implements TransactionRepository {
         return transactions;
     }
 
-    private void validateTransaction(Transaction transaction) throws IOException {
+    private void validateTransaction(Transaction transaction) {
         loadAllTransactions();
         if (transaction.getTransactionType().equals(TransactionType.BORROW)) {
             bookAndUserChecker(transaction);
 
             if (transactions.containsKey(transaction.getId())) {
-                throw new IllegalArgumentException("Transaction with id (" + transaction.getId() + ") has already been accepted!");
+                System.out.println("Transaction with id (" + transaction.getId() + ") has already been accepted!");
+                return;
             }
-            if (loadHoldByUserId(transaction.getUserId()) > 10)
-                throw new IllegalArgumentException("User can not take a new book since there is a hold more than 10$ (" + loadHoldByUserId(transaction.getUserId()) + "$). Pay hold first!");
+            if (loadHoldByUserId(transaction.getUserId()) > 10){
+                System.out.println("User can not take a new book since there is a hold more than 10$ (" + loadHoldByUserId(transaction.getUserId()) + "$). Pay hold first!");
+            return;
+            }
             if (!bookService.loadById(transaction.getBookId()).getFirst().isAvailable()) {
-                throw new IllegalArgumentException("Book with id (" + transaction.getBookId() + ") has been taken");
-
+                System.out.println("Book with id (" + transaction.getBookId() + ") has been taken");
+                return;
             }
             bookService.setBookAvailability(transaction.getBookId(), false);
         } else if (transaction.getTransactionType().equals(TransactionType.RETURN)) {
-
             bookAndUserChecker(transaction);
             List<Book> book = bookService.loadById(transaction.getBookId());
-            if (book.getFirst().isAvailable())
-                throw new IllegalArgumentException("User with given id (" + transaction.getUserId() + ") has not taken book with id (" + transaction.getBookId() + ")");
-            if (transactions.entrySet().stream().noneMatch(t -> t.getValue().getUserId().equals(transaction.getUserId()) && t.getValue().getBookId().equals(transaction.getBookId())))
-                throw new IllegalArgumentException("User with given id (" + transaction.getUserId() + ") has not taken book with id (" + transaction.getBookId() + ")");
+            if (book.getFirst().isAvailable()){
+                System.out.println("User with given id (" + transaction.getUserId() + ") has not taken book with id (" + transaction.getBookId() + ")");
+                return;
+            }
+            if (transactions.entrySet().stream().noneMatch(t -> t.getValue().getUserId().equals(transaction.getUserId()) && t.getValue().getBookId().equals(transaction.getBookId()))){
+                System.out.println("User with given id (" + transaction.getUserId() + ") has not taken book with id (" + transaction.getBookId() + ")");
+
+            }
             Stream<Map.Entry<Long, Transaction>> entryStream = transactions.entrySet().stream().filter(t -> t.getValue().getUserId().equals(transaction.getUserId()) && t.getValue().getBookId().equals(transaction.getBookId()));
             transaction.setBorrowDate(entryStream.findFirst().get().getValue().getBorrowDate());
             bookService.setBookAvailability(transaction.getBookId(), true);
