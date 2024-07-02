@@ -5,7 +5,6 @@ import org.example.enums.UserRole;
 import org.example.repisitory.GeneralRepository;
 import org.example.service.UserService;
 
-import java.io.IOException;
 import java.util.Scanner;
 import java.util.Set;
 
