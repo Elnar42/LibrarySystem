@@ -24,7 +24,7 @@ public class Transaction implements Displayable {
 
 
     //BORROWING, Borrow date is current date (Reservation will be in the later stage)
-    public Transaction(Long userId, Long bookId, LocalDate returnDate)  {
+    public Transaction(Long userId, Long bookId, LocalDate returnDate) {
         LocalDate borrowDate = LocalDate.now();
         verifyCredentials(userId, bookId, borrowDate, returnDate, TransactionType.BORROW);
         Long idtoCheck = GeneralRepository.generateID();
@@ -38,7 +38,7 @@ public class Transaction implements Displayable {
     }
 
     //RETURNING
-    public Transaction(Long userId, Long bookId)  {
+    public Transaction(Long userId, Long bookId) {
         LocalDate returnDate = LocalDate.now();
         verifyCredentials(userId, bookId, borrowDate, returnDate, TransactionType.RETURN);
         Long idtoCheck = GeneralRepository.generateID();
@@ -59,7 +59,7 @@ public class Transaction implements Displayable {
         this.transactionType = transactionType;
     }
 
-    private void verifyCredentials(Long userId, Long bookId, LocalDate borrowDate, LocalDate returnDate, TransactionType transactionType)  {
+    private void verifyCredentials(Long userId, Long bookId, LocalDate borrowDate, LocalDate returnDate, TransactionType transactionType) {
 
         if (userService.loadUserByUserId(userId).isEmpty())
             throw new IllegalArgumentException("User with id (" + userId + ") does not exist!");

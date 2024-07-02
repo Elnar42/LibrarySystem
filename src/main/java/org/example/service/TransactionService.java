@@ -57,7 +57,7 @@ public class TransactionService implements TransactionRepository {
     }
 
     @Override
-    public void makeTransactions(Transaction... transactions) throws IOException {
+    public void makeTransactions(Transaction... transactions) {
         for (Transaction transaction : transactions) {
             makeTransaction(transaction);
         }
