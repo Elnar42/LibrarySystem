@@ -28,7 +28,7 @@ public class Main {
     private final static TransactionService transactionService = new TransactionService();
     private final static UserService userService = new UserService();
 
-    public static void main(String[] args) throws IOException {
+    public static void main(String[] args) {
         Scanner scan = new Scanner(System.in);
 
         System.out.println("---------------------------WELCOME TO AKHUNDOV LIBRARY---------------------------");
